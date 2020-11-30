@@ -1,0 +1,581 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,button{margin:0;padding:0}
+fieldset,img{border:0 none}
+dl,ul,ol,menu,li{list-style:none}
+blockquote, q{quotes: none}
+blockquote:before, blockquote:after,q:before, q:after{content:'';content:none}
+input,select,textarea,button{border-radius:0;vertical-align:middle}
+input::-ms-clear{display:none}
+button{border:0 none;background-color:transparent;cursor:pointer}
+body{background:#fff;direction:ltr;-webkit-text-size-adjust:none}
+body,th,td,input,select,textarea,button{font-size:13px;line-height:1.5;font-family:AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;color:#222;letter-spacing:-1px}
+.os_mac body,.os_mac th,.os_mac td,.os_mac input,.os_mac select,.os_mac textarea,.os_mac button{letter-spacing:0}
+a{color:inherit;text-decoration:none}
+a:hover{}
+a:active{background-color:transparent}
+address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
+.ir_pm{display:block;overflow:hidden;font-size:1px;line-height:0;text-indent:-9999px}
+.ir_wa{display:block;overflow:hidden;position:relative;width:100%;height:100%;z-index:-1}
+.clearfix{ zoom: 1; /* ie 6,7 */}
+.clearfix::before, .clearfix::after{content: " "; display: table;}
+.clearfix::after{clear: both;}
+
+/*나눔스퀘어*/
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+/*/노토산스*/
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800|Noto+Sans+KR:100,300,400,500,700,900&display=swap');
+.nsskew {
+    transform: skew(0.1deg);
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    
+}
+
+
+#wrap{
+    width: 100%;
+    margin: 0 auto;
+    
+}
+#wrap .bg img{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+
+/*
+// 고객사 로고
+*/
+#wrap .com_logo{
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(60%);
+    width: 100px;
+    
+}
+
+#wrap .com_logo img{
+    width: 100%;
+    opacity: 1;
+    transform: translate(0, 100px);
+}
+#wrap .com_logo img.on{
+    width: 100%;
+    opacity: 0;
+    animation: logoAni 1s forwards;
+}
+@keyframes logoAni{
+    0%{
+        transform: translate(0, 150px);
+        opacity: 0;
+        
+    }
+    100%{
+        transform: translate(0, 70px);
+        opacity: 1;
+    }
+}
+
+
+
+
+
+#wrap .logo{
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    
+}
+
+#wrap .logo img{
+    width: 100%;
+    opacity: 1;
+    transform: translate(0, 100px);
+}
+#wrap .logo img.on{
+    width: 100%;
+    opacity: 0;
+    animation: logoAni 1s forwards;
+}
+@keyframes logoAni{
+    0%{
+        transform: translate(0, 150px);
+        opacity: 0;
+        
+    }
+    100%{
+        transform: translate(0, 70px);
+        opacity: 1;
+    }
+}
+
+#wrap .headcopy{
+    position: absolute;
+    top: 200px;
+    width: 287px;
+    left: 50%;
+    margin-left: -145px;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.3;
+    opacity: 0;
+    animation-delay: 0.3s;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+#wrap .headcopy.on{
+    position: absolute;
+    top: 220px;
+    width: 287px;
+    left: 50%;
+    margin-left: -145px;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1.3;
+    opacity: 0;
+    animation: copyAni 1s forwards;
+    animation-delay: 0.3s;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+@keyframes copyAni{
+    0%{
+        transform: translate(0, 70px);
+        opacity: 0;
+        
+    }
+    100%{
+        transform: translate(0, 30px);
+        opacity: 1;
+    }
+}
+#wrap .headcopy strong{
+    color: yellow;
+}
+
+#wrap .event_date{
+    position: absolute;
+    font-family: sans-serif;
+    top: 240px;
+    left: 50%;
+    margin-left: -110px;
+    width: 220px;
+    height: 30px;
+    text-align: center;
+    color: #fff;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 30px;
+    opacity: 0;
+    animation-delay: 0.5s;
+    background: #f04f8f;
+    border-radius: 50px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#wrap .event_date.on{
+    position: absolute;
+    font-family: sans-serif;
+    top: 260px;
+    left: 50%;
+    margin-left: -110px;
+    width: 220px;
+    height: 30px;
+    text-align: center;
+    color: #fff;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 26px;
+    opacity: 0;
+    animation: dateAni 1s forwards;
+    animation-delay: 0.6s;
+    background: #f04f8f;
+    border-radius: 50px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes dateAni{
+    0%{
+        transform: translate(0, 60px);
+        opacity: 0;
+        
+    }
+    100%{
+        transform: translate(0, 35px);
+        opacity: 1;
+    }
+}
+
+
+#wrap .scratch_bord{
+    
+    position: absolute;
+    width: 256px;
+    height: 134px;
+    top: 420px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    background: #fff;
+}
+
+#wrap .scratch_bord .goods{
+    width: 133px;
+    margin: 0 auto;
+}
+#wrap .scratch_bord .goods img{
+    width: 133px;
+    
+}
+
+#wrap .scratch_bord .scratch{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 256px;
+    z-index: 100;
+}
+
+#wrap .scratch_bord .scratch img{
+    width: 256px;
+    height: 134px;
+}
+
+#wrap .scratch_bord .scratch ul{
+    
+}
+
+#wrap .scratch_bord .scratch ul li{
+    width: 64px;
+    height: 67px;
+    float: left;
+    cursor: pointer;
+}
+
+#wrap .scratch_bord .scratch ul li img{
+    width: 64px;
+    height: 67px;
+}
+#wrap .scratch_bord .scratch ul.scr_top{
+        float: left
+}
+
+#wrap .scratch_bord .scratch ul.scr_top li.top01{
+    
+}
+
+#wrap .scratch_bord .scratch ul.scr_top li.top02{
+}
+
+#wrap .scratch_bord .scratch ul.scr_top li.top03{
+}
+
+#wrap .scratch_bord .scratch ul.scr_top li.top04{
+}
+
+#wrap .scratch_bord .scratch ul.scr_down{
+}
+
+#wrap .scratch_bord .scratch ul.scr_down li.down01{
+}
+
+#wrap .scratch_bord .scratch ul.scr_down li.down02{
+}
+
+#wrap .scratch_bord .scratch ul.scr_down li.down03{
+}
+
+#wrap .scratch_bord .scratch ul.scr_down li.down04{
+}
+
+
+.st_popup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    background: rgba(0,0,0,0.5);
+}
+
+.reg_popup{
+    width: 240px;
+    height: 120px;
+    border-radius: 10px;
+    background: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    border: 2px solid #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.reg_popup h3{
+    text-align: center;
+    background: #2872d1;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: sans-serif;
+    padding: 4px 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.reg_popup p{
+    text-align: center;
+    padding-top: 15px;
+}
+.reg_popup button{
+    width: 100px;
+    padding: 5px;
+    background: #2872d1;
+    color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/*결과 팝업창*/
+.result_popup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    background: rgba(0,0,0,0.5);
+    display: none;
+}
+
+.end_popup{
+    width: 240px;
+    height: 260px;
+    border-radius: 10px;
+    background: #fff;
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.end_popup h3{
+    text-align: center;
+    background: #2872d1;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: sans-serif;
+    padding: 4px 0;
+    border-radius: 10px 10px 0 0;
+}
+.end_popup .won_goods img{
+    width: 120px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    float: left;
+}
+
+.end_popup .won_goods_name{
+    width: 100%;
+    font-weight: bold;
+    font-size: 13px;
+    position: absolute;
+    top: 150px;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 100;
+    float: left;
+    color: #2872d1
+}
+.end_popup p{
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    padding-top: 10px;
+    left: 50%;
+    top: 160px;
+    transform: translate(-50%);
+    z-index: 100;
+    font-size: 13px;
+}
+
+
+.end_popup .lose_goods{
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    top: 100px;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 100;
+    float: left
+}
+
+
+.end_popup button{
+    width: 120px;
+    padding: 5px;
+    background: #2872d1;
+    color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+@media screen and (max-width:350px) {
+    #wrap {
+        width: 100%;
+        margin: 0 auto;
+
+
+    }
+    
+/*아이폰SE*/    
+#wrap .scratch_bord{
+    
+    position: absolute;
+    top: 340px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 256px;
+    height: 134px;
+    border: 4px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+}
+
+/*아이폰 PLUS*/
+@media screen and (max-width:440px) {
+    #wrap {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+#wrap .scratch_bord{
+    
+    position: absolute;
+    top: 490px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 256px;
+    height: 134px;
+    border: 4px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+}
+
+/*아이폰 X*/
+@media screen and (max-width:376px) {
+    #wrap {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+#wrap .scratch_bord{
+    
+    position: absolute;
+    top: 440px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 256px;
+    height: 134px;
+    border: 4px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+}
+
+
+
+
+/*아이폰 X*/
+@media screen and (max-width:361px) {
+    #wrap {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+#wrap .scratch_bord{
+    
+    position: absolute;
+    top: 420px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 256px;
+    height: 134px;
+    border: 4px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+    
+    
+}
+
+
+
+/*아이폰 SE*/
+@media screen and (max-width:320px) {
+    #wrap {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+#wrap .scratch_bord{
+    
+    position: absolute;
+    width: 256px;
+    top: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border: 4px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+}
+
+
+
+/*갤럭시폴더*/
+@media screen and (max-width:280px) {
+    #wrap {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+#wrap .scratch_bord{
+    
+    position: absolute;
+    width: 256px;
+    top: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border: 4px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+}
+

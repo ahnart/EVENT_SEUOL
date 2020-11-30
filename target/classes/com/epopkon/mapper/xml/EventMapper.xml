@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.epopkon.mapper.EventMapper">
+
+	<!-- KEY 만들기 -->
+	<insert id="createKey" parameterType="EventInfo">
+		/*	EventMapper.createKey	*/
+		INSERT INTO EVENT_USER(
+			USER_KEY
+		)VALUES(
+			#{userKey}
+		)	
+	</insert>
+	
+	<!-- 로그기록 -->
+	<insert id="insertLog" parameterType="EventInfo">
+		/*	EventMapper.insertLog	*/
+		INSERT INTO EVENT_LOG (
+			USER_KEY
+			, USER_IP
+			, USER_ACTION
+			, REQUEST_REFERRER
+			, REQUEST_URL
+			, REQUEST_PARAM
+			, REQUEST_DATE
+		) VALUES(
+			#{userKey}
+			, #{userIp}
+			, #{userAction}
+			, #{requestReferrer}
+			, #{requestUrl}
+			, #{requestParam}
+			, now()
+		)
+	</insert>
+	<!-- 정보 조회 -->
+	<select id="getUserInfo" parameterType="EventInfo" resultType="EventInfo">
+		/*	EventMapper.getUserInfo	*/
+		SELECT
+			A.USER_KEY AS USER_KEY
+			, A.USER_RESULT AS USER_RESULT
+			, A.GOODS_IDX AS GOODS_IDX
+			, B.GOODS_NAME AS GOODS_NAME
+			, B.GOODS_IMG AS GOODS_IMG
+		FROM
+			EVENT_USER A
+			LEFT JOIN EVENT_GOODS B ON (A.GOODS_IDX = B.GOODS_IDX)
+		WHERE
+			USER_KEY = #{userKey}
+	</select>
+	
+	
+	<!-- 잔여 상품 조회 -->
+	<select id="getLeftCnt" resultType="int">
+		/* EventMapper.getLeftCnt */
+		SELECT
+			SUM(MAX_COUNT) - SUM(CURRENT_COUNT) AS LEFT_CNT
+		FROM
+			EVENT_GOODS
+	</select>
+	
+	
+	<!-- 당첨가능 상품 가져오기 -->
+	<select id="getRandGoods" resultType="EventInfo">
+		/* EventMapper.getLeftCnt */
+		SELECT
+			*
+		FROM
+			EVENT_GOODS
+		WHERE
+			MAX_COUNT > CURRENT_COUNT
+		ORDER BY RAND()
+		LIMIT 1
+	</select>
+	
+	<!-- 당첨 상품 카운트 증가 -->
+	<update id="updateWonCnt" parameterType="EventInfo">
+		/* EventMapper.updateWonCnt */
+		UPDATE EVENT_GOODS SET
+			CURRENT_COUNT = CURRENT_COUNT+1
+		WHERE
+			GOODS_IDX = #{goodsIdx}
+	</update>
+	
+	<!-- 당첨 정보 업데이트 -->
+	<update id="updateUserResult" parameterType="EventInfo">
+		/* EventMapper.updateUserResult */
+		UPDATE EVENT_USER SET
+			USER_RESULT = #{userResult}
+			, GOODS_IDX = #{goodsIdx}
+			, RESULT_DATE = NOW()
+		WHERE
+			USER_KEY = #{userKey}
+			AND USER_RESULT IS NULL
+	</update>
+</mapper>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:security="http://www.springframework.org/schema/security"	
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- Annotation config & scan -->
+	<mvc:annotation-driven />
+	<context:annotation-config />
+	<context:component-scan base-package="com.epopkon" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	
+	
+	<!-- security -->
+	<security:http pattern="/resources/**" security="none" />
+	<security:http pattern="/upload/**" security="none" />
+	
+		 
+	<!-- csrf 기본용 -->
+	<security:http create-session="never" use-expressions="true">
+	    <security:csrf />
+	    <security:headers>
+	    	<security:frame-options disabled="true"></security:frame-options>
+	    </security:headers>
+	    <security:http-basic />
+	</security:http>		 
+	<security:authentication-manager/>
+	
+		
+	<!-- View resolver -->
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
+		<property name="contentType" value="text/html; charset=UTF-8" />		
+	</bean>
+	
+	
+	<!-- 
+	<bean id="simpleMapping" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="order" value="0" />
+		<property name="defaultErrorView" value="errors/default" />
+    	<property name="defaultStatusCode" value="200" />
+    	<property name="exceptionAttribute" value="exception" />
+		<property name="exceptionMappings">
+			<props>
+				<prop key="MaxUploadSizeExceededException">errors/filemax</prop>
+			</props>
+		</property>
+		<property name="statusCodes">
+			<props>
+				<prop key="errors/500">500</prop>
+				<prop key="errors/404">404</prop>
+				<prop key="errors/404">403</prop>
+				<prop key="errors/404">200</prop>
+			</props>		
+		</property>
+	</bean>
+	 -->
+	
+	<bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1" />
+	</bean>
+
+<!-- 	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" /> -->
+<!-- 		<property name="contentType" value="text/plain;charset=utf-8"/>  -->
+<!-- 	</bean> -->
+
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="contentType" value="text/html;charset=UTF-8"/>
+	</bean>
+	
+	<!-- Multipart Resolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="uploadTempDir">
+			<bean class="org.springframework.core.io.FileSystemResource">
+				<constructor-arg value="#{config['upload.dir']}" />
+			</bean>
+		</property>
+		<property name="maxUploadSize" value="#{config['upload.max']}" />
+	</bean>
+
+
+
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg value="11"/>
+	</bean>
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<constructor-arg>
+			<bean class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+				<property name="readTimeout" value="5000" />
+				<property name="connectTimeout" value="5000" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	
+</beans>
