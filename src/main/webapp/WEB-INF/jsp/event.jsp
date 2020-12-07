@@ -57,14 +57,26 @@
 	        <div class="end_popup">
 	            <h3>당첨 결과</h3>
 	            <div class="result_area">
-					<c:if test="${!empty data.userResult && data.userResult eq 'W' }">
-						<div class="won_goods"><img src="${data.goodsImg}" alt="당첨상품이미지"></div>
-						<div class="won_goods_name">${data.goodsName }</div>
-						<p>에 당첨 되셨습니다 <br>축하합니다~!</p>
+	            <!--  참여결과가없을때 -->
+					<c:if test="${empty data.userResult}">   
+						<c:if test="${!empty data.userResult && data.userResult eq 'W' }">
+							<div class="won_goods"><img src="${data.goodsImg}" alt="당첨상품이미지"></div>
+							<div class="won_goods_name">${data.goodsName }</div>
+							<p>에 당첨 되셨습니다 <br>축하합니다~!</p>
+						</c:if>
+						<c:if test="${!empty data.userResult && data.userResult eq 'L' }">
+							<div class="lose_goods">아쉬워요. <br>꽝 입니다. </div>
+						</c:if>
 					</c:if>
-					<c:if test="${!empty data.userResult && data.userResult eq 'L' }">
-						<div class="lose_goods">아쉬워요. <br>꽝 입니다. </div>
-					</c:if>
+					
+						<!-- >> 참여결과가있고 당첨일때 -->
+						<c:if test="${!empty data.userResult && data.userResult eq 'W' }">
+							<div class="lose_goods">이미 참여 하셨습니다. <br>감사합니다. </div>
+						</c:if>
+						<!-- >> 참여결과가있고 꽝일때 -->
+						<c:if test="${!empty data.userResult && data.userResult eq 'L' }">  
+							<div class="lose_goods">이미 참여 하셨습니다. <br>감사합니다. </div>
+						</c:if>
 	            </div>
 	            <button onClick="hideResult();">확인</button>
 	        </div>
@@ -120,10 +132,14 @@
 		}
 	</c:if>
 
+	 // 참여 정보가있을떄
 	<c:if test="${!empty data.userResult}">
 		$(function(){
+			// 결과 팝업 호출
 			$('.result_popup').show();
+			//  로고 애니메이션??  올라오는 그거 활성화
 			$("#wrap .logo img, .event_date, .headcopy, .com_logo").toggleClass("on")
+			// 스크래치 전부 열어본상태로 변경
 			$.each($(".hov-anim"), function(){
 				$(this).attr('src', $(this).data("animated"));
 			});
@@ -132,6 +148,7 @@
 	function hideResult(){
 		$('.result_popup').hide();
 	}
+
 	</script>
 
 
