@@ -369,7 +369,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     border: 2px solid #fff;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
 }
 .end_popup h3{
     text-align: center;
